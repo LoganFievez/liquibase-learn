@@ -1,0 +1,14 @@
+version: '3.9'
+name: liquibase-test
+
+services:
+  postgres-original:
+    image: postgres:15.2
+    container_name: postgres-original
+    ports:
+      - 5432:5432
+    environment:
+      - POSTGRES_PASSWORD=postgres
+    volumes:
+      - ./databases/original:/var/lib/postgresql/data
+      - ./init.d/:/docker-entrypoint-initdb.d/
