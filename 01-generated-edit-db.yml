@@ -1,0 +1,21 @@
+databaseChangeLog:
+- changeSet:
+    id: 1681337737004-1
+    author: Admin (generated)
+    changes:
+    - createTable:
+        columns:
+        - column:
+            autoIncrement: true
+            constraints:
+              nullable: false
+            name: id
+            startWith: 2
+            type: INTEGER
+        - column:
+            constraints:
+              nullable: false
+            name: name
+            type: VARCHAR
+        tableName: users
+

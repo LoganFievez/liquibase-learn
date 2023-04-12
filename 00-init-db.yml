@@ -1,0 +1,124 @@
+databaseChangeLog:
+  - changeSet:
+      id: 1
+      author: liquibase
+      labels: example-label
+      context: example-context
+      comment: example-comment
+      changes:
+        - createTable:
+            tableName: person
+            columns:
+              - column:
+                  name: id
+                  type: int
+                  autoIncrement: true
+                  constraints:
+                    primaryKey: true
+                    nullable: false
+              - column:
+                  name: name
+                  type: varchar(50)
+                  constraints:
+                    nullable: false
+              - column:
+                  name: address1
+                  type: varchar(50)
+              - column:
+                  name: address2
+                  type: varchar(50)
+              - column:
+                  name: city
+                  type: varchar(30)
+
+  - changeSet:
+      id: 2
+      author: liquibase
+      labels: example-label
+      context: example-context
+      comment: example-comment
+      changes:
+        - createTable:
+            tableName: company
+            columns:
+              - column:
+                  name: id
+                  type: int
+                  autoIncrement: true
+                  constraints:
+                    primaryKey: true
+                    nullable: false
+              - column:
+                  name: name
+                  type: varchar(50)
+                  constraints:
+                    nullable: false
+              - column:
+                  name: address1
+                  type: varchar(50)
+              - column:
+                  name: address2
+                  type: varchar(50)
+              - column:
+                  name: city
+                  type: varchar(30)
+
+  - changeSet:
+      id: 3
+      author: liquibase
+      labels: example-label
+      context: example-context
+      comment: example-comment
+      changes:
+        - addColumn:
+            tableName: person
+            columns:
+              - column:
+                  name: country
+                  type: varchar(2)
+
+  - changeSet:
+      id: 4
+      author: lfi
+      labels: create-view
+      context: some context
+      comment: je teste la création d'une vue
+      changes:
+        - createView:
+            schemaName: lfi
+            replaceIfExists: true
+            viewName: users_time
+            selectQuery: select *, current_timestamp as real_time from users;
+            encoding: iso8859-1
+
+  - changeSet:
+      id: 5
+      dbms: oracle
+      author: lfi
+      labels: edit-view
+      context: some context
+      comment: je teste la modification d'une vue mais uniquement pour oracle
+      changes:
+        - createView:
+            schemaName: lfi
+            replaceIfExists: true
+            viewName: users_time
+            selectQuery: select *, sysdate as real_time from users;
+            encoding: iso8859-1
+
+  - changeSet:
+      id: 5
+      dbms: postgresql
+      author: lfi
+      labels: edit-view
+      context: some context
+      comment: je teste la modification d'une vue mais uniquement pour oracle
+      changes:
+        - createView:
+            schemaName: lfi
+            fullDefinition: true
+            viewName: users_time
+            path: views/5-users_time.sql
+            relativeToChangelogFile: true
+            # selectQuery: select *, current_date as real_time from users;
+            encoding: iso8859-1
